@@ -4,15 +4,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css">
-      <link rel="stylesheet" href="https://bramp.github.io/js-sequence-diagrams/css/sequence-diagram-min.css">
       
       
       
       
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@8.0.0-rc.8/dist/mermaid.min.js"></script>
       
       
       
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script type="text/javascript" src="https://bramp.github.io/js-sequence-diagrams/js/sequence-diagram-min.js"></script>
+      
 
       <style> 
       /**
@@ -332,35 +332,63 @@ test_quicksort<span class="token punctuation">(</span><span class="token punctua
 test_merge_sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><h2 class="mume-header" id="%E8%A3%85%E9%A5%B0%E5%99%A8">&#x88C5;&#x9970;&#x5668;</h2>
 
-<div theme="hand" class="sequence">Andrew-&gt;China: Says Hello
-Note right of China: China thinks\nabout it
-China--&gt;Andrew: How are you?
-Andrew-&gt;&gt;China: I am good thanks!
+<div class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br>prevail...
+    John--&gt;&gt;Alice: Great!
+    John-&gt;&gt;Bob: How about you?
+    Bob--&gt;&gt;John: Jolly good!
 </div>
       </div>
       
       
     
     
-    
-    
-    
-    
     <script>
-      var sequenceDiagrams = document.getElementsByClassName('sequence')
-      for (var i = 0; i < sequenceDiagrams.length; i++) {
-        var sequence = sequenceDiagrams[i]
-        try {
-          var diagram = Diagram.parse(sequence.textContent)
-          var theme = sequence.getAttribute('theme') || 'simple'
-          sequence.id = 'sequence_' + i
-          sequence.innerHTML = ''
-          diagram.drawSVG(sequence.id, {theme: theme})
-        } catch (error) {
-          sequence.innerHTML = '<pre class="language-text">' + error.toString() + '</pre>'
-        }
+// config mermaid init call
+// http://knsv.github.io/mermaid/#configuration
+//
+// You can edit the 'MERMAID_CONFIG' variable below.
+MERMAID_CONFIG = {
+  startOnLoad: false
+}
+
+if (window['MERMAID_CONFIG']) {
+  window['MERMAID_CONFIG'].startOnLoad = false
+  window['MERMAID_CONFIG'].cloneCssStyles = false
+  window['MERMAID_CONFIG'].theme = "mermaid.css"
+}
+mermaid.initialize(window['MERMAID_CONFIG'] || {})
+
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
       }
-      </script>
+    }
+  }
+
+  Reveal.addEventListener('slidechanged', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+} else {
+  mermaid.init(null, document.getElementsByClassName('mermaid'))
+}
+</script>
+    
+    
+    
+    
     
   
     </body></html>

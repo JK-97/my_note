@@ -272,7 +272,9 @@ pre[data-line] .line-highlight[data-end]:after {
 </ol>
 <h2 class="mume-header" id="1%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B">1.&#x7B97;&#x6CD5;&#x7B80;&#x4ECB;</h2>
 
-<h5 class="mume-header" id="11%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">1.1&#x5FEB;&#x901F;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;</h5>
+<h4 class="mume-header" id="11%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">1.1&#x6392;&#x5E8F;&#x7B97;&#x6CD5;</h4>
+
+<h5 class="mume-header" id="%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">&#x5FEB;&#x901F;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;</h5>
 
 <pre data-role="codeBlock" data-info="python {.line-numbers}" class="language-python line-numbers"><span class="token keyword">def</span> <span class="token function">quicksort</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">:</span>
@@ -292,7 +294,7 @@ pre[data-line] .line-highlight[data-end]:after {
 
 test_quicksort<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><hr>
-<h5 class="mume-header" id="12%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AE%97%E6%B3%95">1.2&#x5F52;&#x5E76;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x7B97;&#x6CD5;</h5>
+<h5 class="mume-header" id="%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AE%97%E6%B3%95">&#x5F52;&#x5E76;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x7B97;&#x6CD5;</h5>
 
 <pre data-role="codeBlock" data-info="python {.line-numbers}" class="language-python line-numbers"><span class="token keyword">def</span> <span class="token function">merge_sorted_seq</span><span class="token punctuation">(</span>sorted_a<span class="token punctuation">,</span> sorted_b<span class="token punctuation">)</span><span class="token punctuation">:</span>
     length_a<span class="token punctuation">,</span> length_b <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sorted_a<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sorted_b<span class="token punctuation">)</span>
@@ -336,7 +338,95 @@ test_quicksort<span class="token punctuation">(</span><span class="token punctua
 
 
 test_merge_sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><hr>
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><h4 class="mume-header" id="12%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">1.2&#x6570;&#x636E;&#x7ED3;&#x6784;</h4>
+
+<h5 class="mume-header" id="%E9%93%BE%E8%A1%A8">&#x94FE;&#x8868;</h5>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> ListNode<span class="token punctuation">:</span>
+        pre <span class="token operator">=</span><span class="token boolean">None</span>
+        cur <span class="token operator">=</span> head
+        <span class="token keyword">while</span> cur<span class="token punctuation">:</span>
+            nextnode <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
+            cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> pre
+            pre <span class="token operator">=</span> cur 
+            cur <span class="token operator">=</span> nextnode
+        <span class="token keyword">return</span> pre
+
+</pre><h5 class="mume-header" id="%E9%98%9F%E5%88%97">&#x961F;&#x5217;</h5>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+
+<span class="token keyword">class</span> <span class="token class-name">Queue</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>item <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">append</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>item<span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>item<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>item<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+
+</pre><h4 class="mume-header" id="%E6%A0%88">&#x6808;</h4>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">MinStack</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        initialize your data structure here.
+        &quot;&quot;&quot;</span>
+        self<span class="token punctuation">.</span>stack<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">getMin</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">min</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>stack<span class="token punctuation">)</span>
+
+
+<span class="token comment"># Your MinStack object will be instantiated and called as such:</span>
+<span class="token comment"># obj = MinStack()</span>
+<span class="token comment"># obj.push(x)</span>
+<span class="token comment"># obj.pop()</span>
+<span class="token comment"># param_3 = obj.top()</span>
+<span class="token comment"># param_4 = obj.getMin()</span>
+</pre><h4 class="mume-header" id="%E6%A0%91">&#x6811;</h4>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># Definition for a binary tree node.</span>
+<span class="token comment"># class TreeNode:</span>
+<span class="token comment">#     def __init__(self, x):</span>
+<span class="token comment">#         self.val = x</span>
+<span class="token comment">#         self.left = None</span>
+<span class="token comment">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        
+        depth <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">while</span> stack <span class="token operator">!=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            current_depth<span class="token punctuation">,</span> root <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+                depth <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>depth<span class="token punctuation">,</span> current_depth<span class="token punctuation">)</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>current_depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>current_depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        
+        <span class="token keyword">return</span> depth
+</pre><hr>
 <h2 class="mume-header" id="2%E8%A3%85%E9%A5%B0%E5%99%A8">2&#x88C5;&#x9970;&#x5668;</h2>
 
 <h5 class="mume-header" id="21%E5%87%BD%E6%95%B0%E8%A3%85%E9%A5%B0%E5%99%A8">2.1&#x51FD;&#x6570;&#x88C5;&#x9970;&#x5668;</h5>

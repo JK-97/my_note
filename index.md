@@ -23,21 +23,25 @@ toc:
 **动态语言**
 * 编译器还是运行期确定类型
 * python是在运行期确定类型的
+
 **强类型**
 * 会不会发生隐式转换
 * python是强类型语言
+
 **优缺点**
 * 胶水语言，轮子多，应用广泛
 * 语言灵活，生产力高
 * 性能问题，代码维护，python2/3差异
+
 **拥有自省功能**
 * 在运行时能够获得对象的类型
-*type()，判断对象类型
+* type()，判断对象类型
 * dir()， 带参数时获得该对象的所有属性和方法；不带参数时，返回当前范围内的变量、方法和定义的类型列表
 * isinstance()，判断对象是否是已知类型
 * hasattr()，判断对象是否包含对应属性
 * getattr()，获取对象属性
 * setattr()， 设置对象属性
+
 **猴子补丁**
 * 猴子补丁是程序在本地扩展或修改支持系统软件的方式（仅影响程序的运行实例）
 * 所谓mankey patch 就是运行时替换
@@ -45,6 +49,7 @@ toc:
 * from gevent import monkey；
 monkey.patch_socket()
 将阻塞soket替换成非阻塞socket
+
 **鸭子类型**
 * 如果里看到一个鸟，走起来像鸭子，叫起来像鸭子，那么它就是鸭子
 * 更关注接口
@@ -70,16 +75,19 @@ def add(**kwargs):
 * 类型注解：type hint:def hello(name:str) ->str:
 * chaied exception， py3重新抛出异常不会丢失栈信息
 * 一切返回迭代器 range,zip,map,dict,values,etc,are all iterators
+
 **新增**
 * yeld from 连接
 * asyncio，async/wait 原生协程支持异步编程
 * 新增enum，mock，asyncio，ipaddress，concurrent.futures
 * 生成的pyc文件统一放到__pycache__
 * 内置库修改，urllib，selector
+
 **兼容2/3的代码**
 * six
 * 2to3等工具转换代码格式
-* __future__
+* \_\_future__
+
 **可变/不可变对象**
 * 不可变对象：bool/int/float/tuple/str/frozenset
 * 可变对象：list/set/dict 
@@ -332,6 +340,7 @@ class person(object): #py3可以直接class person
 * staticmethod使用起来和普通函数，只不过放在类里去组织
 
 **元类**
+
 ***元类是创建类的类***
 * 元类允许我们控制类的生成，比如修改类的属性
 * 使用type来定义原类
@@ -383,7 +392,7 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 [reference：https://www.cnblogs.com/huangjianping/p/7998067.html==](https://www.cnblogs.com/huangjianping/p/7998067.html)
 
 ## 4.2.HTTP协议
- 在Web应用中，服务器把网页传给浏览器，实际上就是把网页的HTML代码发送给浏览器，让浏览器显示出来。而浏览器和服务器之间的传输协议是HTTP，所以：
+ &emsp;&emsp;在Web应用中，服务器把网页传给浏览器，实际上就是把网页的HTML代码发送给浏览器，让浏览器显示出来。而浏览器和服务器之间的传输协议是HTTP，所以：
 
  * 是一种用来定义网页的文本，会HTML，就可以编写网页；
  * 是在网络上传输HTML的协议，用于浏览器和服务器的通信。
@@ -417,7 +426,8 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 # 5.Linux相关
 
 ## 5.1.Linux储备
-* 苏联在Linux服务器上操作
+**常考察方向**
+* 在Linux服务器上操作
 * 了解Linux工作原理和常用工具
 * 需要了解查看文件，进程，内存相关的一些命令，用来调试
 
@@ -459,6 +469,7 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 
 
 ## 5.2.操作系统内存管理机制
+
 **什么是分页机制**
 操作系统为了搞笑管理内存，减少碎片，逻辑地址和物理地址分离的内存分配管理方案
 * 程序的逻辑地址划分为固定大小的页(Page)
@@ -485,7 +496,7 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 * 系统似乎提供了比实际内存大得很多的内存容量，称之为虚拟内存
 
 **什么是内存抖动**
-本质是频繁的页调度行为
+* 本质是频繁的页调度行为
 * 频繁的页调度，进程不断产生缺页中断
 * 置换一个页，又不断再次需要这个页
 * 运行程序太多；分页替换策略不好。终止进程或者增加物理内存
@@ -512,8 +523,8 @@ del a       #a ref 1
 del b       #b ref 1    无法归零回收
 ```
 > ![标记清楚](https://jk-97.github.io/my_note/sources/dsadas.png)
+> 通过root节点搜索可以达到的节点，不可达到的点标为灰色，回收
 
-通过root节点搜索可以达到的节点，不可达到的点标为灰色，回收
 ***分代回收***
 * 给对象记录下一个age，随着每一次垃圾回收，这个age会增加；
 * 给不同age的对象分配不同的堆内内存空间，称为某一代；
@@ -756,7 +767,7 @@ del b       #b ref 1    无法归零回收
     * 类似求两个表的“并集”
     * 但是Mysql不支持，可以用left jion，union，right join联合使用模拟
 ### 6.2.3.Mysql思考题
-* 为什么Mysql数据库的主键使用自增的增数比较好
+* 为什么Mysql数据库的主键使用自增的增数比较好？
 &emsp;&emsp;对于这个问题需要从MySQL的索引以及存储引擎谈起：
 &emsp;&emsp;InnoDB的primary key为cluster index,除此之外，不能通过其他方式指定cluster index,如果InnoDB不指定primary key,InnoDB会找一个unique not null的field做cluster index,如果还没有这样的字段，则InnoDB会建一个非可见的系统默认的主键---row_id(6个字节长)作为cluster_index。
 &emsp;&emsp;建议使用数字型auto_increment的字段作为cluster index。不推荐用字符串字段做cluster index (primary key) ,因为字符串往往都较长， 会导致secondary index过大(secondary index的叶子节点存储了primary key的值),而且字符串往往是乱序。cluster index乱序插入容易造成插入和查询的效率低下。

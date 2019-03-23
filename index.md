@@ -8,11 +8,13 @@ toc:
   depth_from: 1
   depth_to: 3
   ordered: false
-  
-  
-  
+
 ---
 # 欢迎来到我的笔记
+
+笔记尚待完善，陆续会有项目专题。
+[我的仓库](https://github.com/JK-97)
+
 ---
 # 1.python语言
 

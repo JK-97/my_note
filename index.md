@@ -47,7 +47,7 @@ monkey.patch_socket()
 * 如果里看到一个鸟，走起来像鸭子，叫起来像鸭子，那么它就是鸭子
 * 更关注接口
 ---
-## 1.2。python2/3差异
+## 1.2.python2/3差异
 **不同**
 * print成为了函数
 * 不再有Unicode，默认str就是nuicode

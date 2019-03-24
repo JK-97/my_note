@@ -1364,6 +1364,58 @@ marshenm
 mmm
 &quot;&quot;&quot;</span>
 
+</pre><h2 class="mume-header" id="%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E4%B8%8E%E5%B9%BF%E5%BA%A6%E9%82%AE%E7%AE%B1">&#x6DF1;&#x5EA6;&#x4F18;&#x5148;&#x4E0E;&#x5E7F;&#x5EA6;&#x90AE;&#x7BB1;</h2>
+
+<blockquote>
+<p><img src="https://jk-97.github.io/my_note/sources/dsafsafjhkuy.png" alt="database "></p>
+</blockquote>
+<ul>
+<li>&#x6DF1;&#x5EA6;&#x4F18;&#x5148;<br>
+ABDEICFGH(&#x9012;&#x5F52;&#x5B9E;&#x73B0;)</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">depth_tree</span><span class="token punctuation">(</span>tree_node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> tree_node <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>tree_node<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> tree_node<span class="token punctuation">.</span>_left <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> depth_tree<span class="token punctuation">(</span>tree_node<span class="token punctuation">.</span>_left<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> tree_node<span class="token punctuation">.</span>_right <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> depth_tree<span class="token punctuation">(</span>tree_node<span class="token punctuation">.</span>_right<span class="token punctuation">)</span>
+</pre><ul>
+<li>&#x5E7F;&#x5EA6;&#x4F18;&#x5148;<br>
+ABCDEFGHI(&#x961F;&#x5217;&#x5B9E;&#x73B0;)</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">level_queue</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span>
+    my_queue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    my_queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+    <span class="token keyword">while</span> my_queue<span class="token punctuation">:</span>
+        node <span class="token operator">=</span> my_queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>elem<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> node<span class="token punctuation">.</span>lchild <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            my_queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>lchild<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> node<span class="token punctuation">.</span>rchild <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            my_queue<span class="token punctuation">.</span>appnd<span class="token punctuation">(</span>node<span class="token punctuation">.</span>rchild<span class="token punctuation">)</span>
+</pre><p><strong>&#x722C;&#x866B;&#x53BB;&#x91CD;&#x7B56;&#x7565;</strong></p>
+<ul>
+<li>&#x5C06;&#x8BBF;&#x95EE;&#x7684;url&#x4FDD;&#x5B58;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;</li>
+<li>&#x5C06;&#x8BBF;&#x95EE;&#x7684;url&#x62A5;&#x9519;&#x5230;set&#x4E2D;&#xFF0C;&#x53EA;&#x9700;&#x8981;o(1)&#x4EE3;&#x4EF7;&#x5C31;&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;url</li>
+<li>url&#x7ECF;&#x8FC7;md5&#x7B49;&#x65B9;&#x6CD5;&#x54C8;&#x5E0C;&#x4FDD;&#x5B58;&#x5230;set</li>
+<li>&#x7528;bitmap&#x65B9;&#x6CD5;&#xFF0C;&#x5C06;&#x8BBF;&#x95EE;&#x7684;url&#x901A;&#x8FC7;hash&#x51FD;&#x6570;&#x6620;&#x5C04;&#x5230;&#x67D0;&#x4E00;&#x4F4D;</li>
+<li>bloomfilter&#x65B9;&#x6CD5;&#x5BF9;bitmap&#x8FDB;&#x884C;&#x6539;&#x8FDB;&#xFF0C;&#x5BF9;&#x91CD;hash&#x51FD;&#x6570;&#x964D;&#x4F4E;&#x51B2;&#x7A81;</li>
+</ul>
+<h2 class="mume-header" id="scrapy%E7%9A%84%E5%AE%89%E8%A3%85">scrapy&#x7684;&#x5B89;&#x88C5;</h2>
+
+<p>&#x865A;&#x62DF;&#x73AF;&#x5883;&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x5728;windows&#x7CFB;&#x7EDF;&#x4E2D;&#x8FD8;&#x9700;&#x5B89;&#x88C5;pypiwin32&#x5E93;&#xFF0C;&#x5B89;&#x88C5;&#x597D;&#x540E;&#xFF0C;&#x5728;cmd&#x4E2D;&#x8F93;&#x5165;</p>
+<pre data-role="codeBlock" data-info="c" class="language-c">scrapy startproject ArticleSpider               #&#x521B;&#x5EFA;&#x9879;&#x76EE;
+scrapy genspider jobbloe web<span class="token punctuation">.</span>jobble<span class="token punctuation">.</span>com         #&#x5728;&#x9879;&#x76EE;&#x4E8E;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x521B;&#x5EFA;&#x722C;&#x866B;
+</pre><p>&#x7531;&#x4E8E;pycharm&#x4E2D;&#x6CA1;&#x6709;scrapy&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E3B;&#x811A;&#x672C;&#x542F;&#x52A8;&#x8C03;&#x8BD5;&#x722C;&#x866B;&#xFF0C;&#x5728;&#x4E3B;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA;</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>cmdline <span class="token keyword">import</span> execute
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> os
+
+sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+execute<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;scrapy&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;crawl&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;jobbole&apos;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>                            <span class="token comment">#&#x76F8;&#x5F53;&#x4E8E;&#x5728;cmd&#x7A97;&#x53E3;&#x6267;&#x884C;   scrapy crawl jobble</span>
 </pre><hr>
 <h1 class="mume-header" id="8%E6%A1%86%E6%9E%B6%E8%AF%AD%E8%A8%80">8.&#x6846;&#x67B6;&#x8BED;&#x8A00;</h1>
 
@@ -1377,8 +1429,7 @@ mmm
 <pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;wsgi&#x5E94;&#x7528;</span>
 <span class="token keyword">def</span> <span class="token function">myapp</span><span class="token punctuation">(</span>environ<span class="token punctuation">,</span> start_resopnce<span class="token punctuation">)</span><span class="token punctuation">:</span>
     status <span class="token operator">=</span> <span class="token string">&apos;200 OK&apos;</span>
-    header <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">&apos;Conten-Typr&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;text/html;charset=utf-8&apos;</span><span class="token punctuation">)</span>
-              <span class="token punctuation">]</span>
+    header <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">&apos;Conten-Typr&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;text/html;charset=utf-8&apos;</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     start_resopnce<span class="token punctuation">(</span>status<span class="token punctuation">,</span> header<span class="token punctuation">)</span>
     <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">b&apos;&lt;h1&gt;Hello world&lt;/h1&gt;&apos;</span><span class="token punctuation">]</span>
 
@@ -1489,6 +1540,8 @@ mmm
 <li><a href="#712%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">7.1.2.&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</a></li>
 </ul>
 </li>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E4%B8%8E%E5%B9%BF%E5%BA%A6%E9%82%AE%E7%AE%B1">&#x6DF1;&#x5EA6;&#x4F18;&#x5148;&#x4E0E;&#x5E7F;&#x5EA6;&#x90AE;&#x7BB1;</a></li>
+<li><a href="#scrapy%E7%9A%84%E5%AE%89%E8%A3%85">scrapy&#x7684;&#x5B89;&#x88C5;</a></li>
 </ul>
 </li>
 <li><a href="#8%E6%A1%86%E6%9E%B6%E8%AF%AD%E8%A8%80">8.&#x6846;&#x67B6;&#x8BED;&#x8A00;</a>

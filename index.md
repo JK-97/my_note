@@ -926,6 +926,59 @@ mmm
 
 
 ## 深度优先与广度邮箱
+> ![database ](https://jk-97.github.io/my_note/sources/dsafsafjhkuy.png)
+* 深度优先
+ABDEICFGH(递归实现)
+```python
+def depth_tree(tree_node):
+    if tree_node is not None:
+        print(tree_node.val)
+    if tree_node._left is not None:
+        return depth_tree(tree_node._left)
+    if tree_node._right is not None:
+        return depth_tree(tree_node._right)
+```
+* 广度优先
+ABCDEFGHI(队列实现)
+```python
+def level_queue(root):
+    if root is None:
+        return
+    my_queue = []
+    my_queue.append(root)
+    while my_queue:
+        node = my_queue.pop()
+        print(node.elem)
+        if node.lchild is not None:
+            my_queue.append(node.lchild)
+        if node.rchild is not None:
+            my_queue.appnd(node.rchild)
+```
+**爬虫去重策略**
+* 将访问的url保存到数据库中
+* 将访问的url报错到set中，只需要o(1)代价就可以查询url
+* url经过md5等方法哈希保存到set
+* 用bitmap方法，将访问的url通过hash函数映射到某一位
+* bloomfilter方法对bitmap进行改进，对重hash函数降低冲突
+
+## scrapy的安装
+虚拟环境安装好后，在windows系统中还需安装pypiwin32库，安装好后，在cmd中输入
+```c
+scrapy startproject ArticleSpider               #创建项目
+scrapy genspider jobbloe web.jobble.com         #在项目于目录下，创建爬虫
+```
+由于pycharm中没有scrapy的模板，需要创建主脚本启动调试爬虫，在主目录下创建
+```python
+from scrapy.cmdline import execute
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+execute(['scrapy','crawl','jobbole'])                            #相当于在cmd窗口执行   scrapy crawl jobble
+```
+
+
+
 
 
 
@@ -945,8 +998,7 @@ mmm
 #一个简单的wsgi应用
 def myapp(environ, start_resopnce):
     status = '200 OK'
-    header = [('Conten-Typr', 'text/html;charset=utf-8')
-              ]
+    header = [('Conten-Typr', 'text/html;charset=utf-8')]
     start_resopnce(status, header)
     return [b'<h1>Hello world</h1>']
 

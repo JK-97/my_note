@@ -382,13 +382,17 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 
 ## 4.1.基本概念
 **协议表**
-![protal ](https://jk-97.github.io/my_note/sources/dasdgnhy.png)
+> ![index_协议表 ](https://jk-97.github.io/my_note/sources/index_协议表.png)
+
 **浏览器输入一个url中间经历的过程**
-![request](https://jk-97.github.io/my_note/sources/1061765-20161211174151304-1668168182.png)
+> ![index_url历程](https://jk-97.github.io/my_note/sources/index_url历程.png)
+
 **TCP三次握手**
-![tcp 3 times ](https://jk-97.github.io/my_note/sources/1061765-20161211174151304-1668168182.png)
+> ![index_三次握手](https://jk-97.github.io/my_note/sources/index_三次握手.png)
+
 **TCP四次挥手**
-![tcp 4 times ](https://jk-97.github.io/my_note/sources/1061765-20161211181122866-333961282.png)
+> ![index_四次挥手 ](https://jk-97.github.io/my_note/sources/index_四次挥手.png)
+
 [reference：https://www.cnblogs.com/huangjianping/p/7998067.html==](https://www.cnblogs.com/huangjianping/p/7998067.html)
 
 ## 4.2.HTTP协议
@@ -475,14 +479,14 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 * 程序的逻辑地址划分为固定大小的页(Page)
 * 物理地址划分为同样大小的帧(Frame)
 * 通过页表对应逻辑地址和物理地址
-> ![分页](https://jk-97.github.io/my_note/sources/asdsadsd.png)
+> ![分页](https://jk-97.github.io/my_note/sources/index_分页机制.png)
 
 **什么是分段机制**
 分段式为了满足代码的一些逻辑需求
 * 数据共享，数据保护，动态链接库等
 * 通过段表实现逻辑地址和物理地址的映射关系
 * 每个段类不式连续内存分配，段和段直接式离散分配的(每个段是出于实现相同的一个功能来进行分配)
-> ![分段](https://jk-97.github.io/my_note/sources/dsadsafa.png)
+> ![分段](https://jk-97.github.io/my_note/sources/index_分段机制.png)
 
 **分页和分段的区别**
 * 页是出于内存利用率的角度提出离散分配机制
@@ -522,7 +526,7 @@ b.append(a) #a ref 2
 del a       #a ref 1
 del b       #b ref 1    无法归零回收
 ```
-> ![标记清楚](https://jk-97.github.io/my_note/sources/dsadas.png)
+> ![标记清楚](https://jk-97.github.io/my_note/sources/index_分代回收.png)
 > 通过root节点搜索可以达到的节点，不可达到的点标为灰色，回收
 
 ***分代回收***
@@ -572,7 +576,7 @@ del b       #b ref 1    无法归零回收
 
 ## 6.1.数据库种类
 **如图:**
-> ![database ](https://jk-97.github.io/my_note/sources/228680-448d468546343fa9.png)
+> ![index_数据库分类 ](https://jk-97.github.io/my_note/sources/index_数据库分类.png)
 > 
 **关系型数据库介绍**
  
@@ -586,7 +590,7 @@ del b       #b ref 1    无法归零回收
     &emsp;&emsp;关系型数据库诞生40多年了，从理论产生发展到现实产品，例如：Oracle和MySQL，Oracle在数据库领域上升到霸主地位，形成每年高达数百亿美元的庞大产业市场。
 
 3. **关系型数据库表格之间的关系举例**
-![table ](https://jk-97.github.io/my_note/sources/228680-945f5401f695df78.png)
+![index_关系表 ](https://jk-97.github.io/my_note/sources/index_关系表.png)
  
 
 **非关系型数据库介绍**
@@ -798,7 +802,7 @@ del b       #b ref 1    无法归零回收
     * 缓存关系数据库并访问的压力：热点数据
     * 减少响应时间：内存IO速度必磁盘快
     * 提升吞吐量：Redis等内存数据库单机可以支撑很大并发
-![redis与memcached](https://jk-97.github.io/my_note/sources/1552619755.png)
+![index_redis与memcached](https://jk-97.github.io/my_note/sources/index_redis与memcached.png)
 * Redis的常用数据类型，使用方式
     * Sring:用来实现简单的KV键值对，比如计数器
     * List：实现双向链表，比如用户的关注，粉丝列表
@@ -925,8 +929,10 @@ mmm
 ```
 
 
-## 深度优先与广度邮箱
-> ![database ](https://jk-97.github.io/my_note/sources/dsafsafjhkuy.png)
+### 7.1.3.深度优先与广度邮箱
+> ![index_伯乐网络结构 ](https://jk-97.github.io/my_note/sources/index_伯乐网络结构.png)
+我们可以观看网站的结构非常地与数据结构的树相似
+> ![index_二叉树 ](https://jk-97.github.io/my_note/sources/index_二叉树.png)
 * 深度优先
 ```python
 # ABDEICFGH(递归实现)
@@ -956,8 +962,7 @@ def level_queue(root):
             my_queue.appnd(node.rchild)
 ```
 **爬虫去重策略**
-> ![database ](https://jk-97.github.io/my_note/sources/okuyjkiuok678.png)
-
+由于网站中链接会有相互跳转的情况，如我们不处理，那么就有可能会进入无限的循环。我们就需要进行网站的除重。常用的除虫有以下策略：
 * 将访问的url保存到数据库中
 * 将访问的url报错到set中，只需要o(1)代价就可以查询url
 * url经过md5等方法哈希保存到set
@@ -977,7 +982,7 @@ import sys
 import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-execute(['scrapy','crawl','jobbole'])                            #相当于在cmd窗口执行   scrapy crawl jobble
+execute(['scrapy','crawl','jobbole'])    #相当于在cmd窗口执行   scrapy crawl jobble
 ```
 
 

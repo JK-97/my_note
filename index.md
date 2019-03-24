@@ -756,6 +756,7 @@ del b       #b ref 1    无法归零回收
 * 调整数据修改索引；业务代码层限制不合理访问
 ----
 ### 6.2.2.Mysql语句常考题
+
 **SQL语句已考察各种各种连接为重点**
 * 内链接(INNER JOIN)：两个表存在匹配时，才会返回匹配行
     * 将左表和右表能关联起来的数据连接后返回
@@ -770,7 +771,9 @@ del b       #b ref 1    无法归零回收
     * 只要某一个表存在匹配，就返回行
     * 类似求两个表的“并集”
     * 但是Mysql不支持，可以用left jion，union，right join联合使用模拟
+
 ### 6.2.3.Mysql思考题
+
 * 为什么Mysql数据库的主键使用自增的增数比较好？
 &emsp;&emsp;对于这个问题需要从MySQL的索引以及存储引擎谈起：
 &emsp;&emsp;InnoDB的primary key为cluster index,除此之外，不能通过其他方式指定cluster index,如果InnoDB不指定primary key,InnoDB会找一个unique not null的field做cluster index,如果还没有这样的字段，则InnoDB会建一个非可见的系统默认的主键---row_id(6个字节长)作为cluster_index。
@@ -782,7 +785,8 @@ del b       #b ref 1    无法归零回收
     * 范围like查询，自增ID性能优于UUID
     * 写入测试，自增ID是UUID的4倍
     * 备份和恢复，自增ID性能优于UUID
-* 如果是分布式系统下怎么生成数据库的自增
+
+* 如果是分布式系统下怎么生成数据库的自增?
 分布式架构，意味着需要多个实例中保持一个表的主键的唯一性。这个时候普通的单表自增ID主键就不太合适，因为多个mysql实例上会遇到主键全局唯一性问题。
     * 自增ID主键+步长，适合中等规模的分布式景
 &emsp;&emsp;在每个集群节点组的master上面，设置（auto_increment_increment），让目前每个集群的起始点错开 1，步长选择大于将来基本不可能达到的切分集群数，达到将 ID 相对分段的效果来满足全局唯一的效果。
@@ -797,18 +801,22 @@ del b       #b ref 1    无法归零回收
 ---
 ## 6.3.Redis
 ### 6.3.1.Redis概念
+
 * 为什么使用缓存？使用场景？
     * 常用的内存缓存有Redis和Memcached
     * 缓存关系数据库并访问的压力：热点数据
     * 减少响应时间：内存IO速度必磁盘快
     * 提升吞吐量：Redis等内存数据库单机可以支撑很大并发
-![index_redis与memcached](https://jk-97.github.io/my_note/sources/index_redis与memcached.png)
+
+> ![index_redis与memcached](https://jk-97.github.io/my_note/sources/index_redis与memcached.png)
+
 * Redis的常用数据类型，使用方式
     * Sring:用来实现简单的KV键值对，比如计数器
     * List：实现双向链表，比如用户的关注，粉丝列表
     * Hash：用来存储彼此相关的键值对，HSET key filed value
     * Set：存储不重复元素，比如用户的关注者
     * Sorted Set：实时信息排行榜
+
 * Redis内置实现
     * C语言底层实现
     * String：整数或者sds(Simple Dynamic String)
@@ -816,18 +824,23 @@ del b       #b ref 1    无法归零回收
     * Hash：ziplist或者hashtable
     * Set：intset或者hashtable
     * SortedSet:skiplist 跳跃表
+
 * Redis有哪些持久化方式？
     * 快照方式：把数据快照放在磁盘二进制文件中，dump.rdb，指定时间间隔把Redis数据库状态保存到一个压缩的二进制文件中，缺点：若宕机，间隔内的数据全部丢失
     * AOF(Append Only File)：每一个写命令保存到appendonly.aof中。缺点，虽然不会丢失大量数据，但文件比较大，恢复速度比较慢
+
 * Redis事务
     * 将多个请求打包，一次性，按序执行多个命令的机制
     * Rdis通过MULTI,EXEC,WATCH等命令实现事务功能
     * Python redis-py pipeline = conn.pipeline(transaction =True)
+
 * Redis如何实现分布式锁
     * 使用setnx实现加锁，可以同时通过expire添加超时时间
     * 锁的valuse值可以使用一个随机的uuid或者待定的命名
     * 释放锁的时候，通过uuid判断是否是该锁，是则执行delete释放锁
+
     [Redis分布式锁的实现原理看这篇就够了](https://blog.csdn.net/gupao123456/article/details/84327254)
+
 * 使用缓存的模式？
     * Cache Aside：同时更新缓存和数据库(先更新数据库后更新缓存，并发写操作可能导致缓存读取的是脏数据，一般先更新数据库然后删除缓存，下次读取时再重建缓存)
     * Read/Write Throught：先更新缓存，缓存负责同步更新数据库

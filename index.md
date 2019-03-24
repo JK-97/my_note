@@ -928,8 +928,8 @@ mmm
 ## 深度优先与广度邮箱
 > ![database ](https://jk-97.github.io/my_note/sources/dsafsafjhkuy.png)
 * 深度优先
-ABDEICFGH(递归实现)
 ```python
+# ABDEICFGH(递归实现)
 def depth_tree(tree_node):
     if tree_node is not None:
         print(tree_node.val)
@@ -939,8 +939,9 @@ def depth_tree(tree_node):
         return depth_tree(tree_node._right)
 ```
 * 广度优先
-ABCDEFGHI(队列实现)
+
 ```python
+# ABCDEFGHI(队列实现)
 def level_queue(root):
     if root is None:
         return
@@ -955,6 +956,8 @@ def level_queue(root):
             my_queue.appnd(node.rchild)
 ```
 **爬虫去重策略**
+> ![database ](https://jk-97.github.io/my_note/sources/okuyjkiuok678.png)
+
 * 将访问的url保存到数据库中
 * 将访问的url报错到set中，只需要o(1)代价就可以查询url
 * url经过md5等方法哈希保存到set

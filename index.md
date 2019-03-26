@@ -982,7 +982,7 @@ def level_queue(root):
 * 用bitmap方法，将访问的url通过hash函数映射到某一位
 * bloomfilter方法对bitmap进行改进，对重hash函数降低冲突
 
-## scrapy的安装
+## 7.2.scrapy的安装
 虚拟环境安装好后，在windows系统中还需安装pypiwin32库，安装好后，在cmd中输入
 ```c
 scrapy startproject ArticleSpider               #创建项目
@@ -998,13 +998,44 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 execute(['scrapy','crawl','jobbole'])    #相当于在cmd窗口执行   scrapy crawl jobble
 ```
 
+## xpath
 
+简介
+使用路径表达式在xml和html中进行导航
+xpath包含标准函数库
+xpath时一个w3c标准
+
+节点关系
+父节点
+子节点
+同胞节点
+先辈节点
+后代节点
+
+xpath语法
+> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath.png)
+> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath_.png)
+> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath_谓语.png)
+
+
+
+
+在伯乐在线选取一篇网站，使用浏览器开发者工具复制xpth路径填入
+火狐浏览器和chrome浏览器的可能不一样，是因为火狐的复制xpath是浏览器运行网页代码之后生成的，其中有js生成的元素。
+0
+```python
+#jobbole.py
+start_urls = ['http://blog.jobbole.com/114666/']
+···
+strs = '//*[@id="post-114666"]/div[1]/h1/text()'
+re_selector = response.xpath(strs)
+xpath("//span[contains(@class,'xxxx')]")
+```
 
 
 
 
 ---
-
 
 
 # 8.框架语言

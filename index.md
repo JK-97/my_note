@@ -167,7 +167,11 @@ def test_merge_sort():
 
 
 test_merge_sort()
+
 ```
+> 由于一次面试没答出来，回来恶补了一下
+> ![排序算法复杂度](https://jk-97.github.io/my_note/sources/index_排序复杂度.jpg)
+
 ---
 ## 2.2.数据结构
 
@@ -344,7 +348,8 @@ class person(object): #py3可以直接class person
 
 ***元类是创建类的类***
 * 元类允许我们控制类的生成，比如修改类的属性
-* 使用type来定义原类
+* 使用type来定义元类
+* 也可使用metaclass属性来替换元类
 * 元类最常见的一个使用场景就是ORM框架
 ```python
 #观看文档这两种定义是等价的。
@@ -427,6 +432,40 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 * Session 一般是服务器生成后给客户端
 * Cookie 是实现session的一种机制，通过HTTP cookie字段实现
 * Session 通过在服务器保存sessionid 识别用户，cookie 存储在客户端
+
+**HTTP1.0和HTTP1.1的一些区别**
+* TTP1.1则引入了更多的缓存控制策略
+* 支持断点续传功能，解决了浪费资源的问题
+* 请求消息和响应消息都应支持Host头
+
+**HTTPS与HTTP的一些区别**
+* HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费。
+* HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的。
+
+* HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
+
+* HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。
+
+
+
+**HTTP请求方法**
+* 根据HTTP标准，HTTP请求可以使用多种请求方法。
+
+* HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。
+
+* HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
+
+column0 | column1 | column2
+------- | ------- | -------
+序号 | 方法 | 描述
+1 | GET | 请求指定的页面信息，并返回实体主体。
+2 | HEAD | 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头
+3 | POST | 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。
+4 | PUT | 从客户端向服务器传送的数据取代指定的文档的内容。
+5 | DELETE | 请求服务器删除指定的页面。
+6 | CONNECT | HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。
+7 | OPTIONS | 允许客户端查看服务器的性能。
+8 | TRACE | 回显服务器收到的请求，主要用于测试或诊断。
 ---
 # 5.Linux相关
 

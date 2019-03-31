@@ -1053,8 +1053,8 @@ xpath时一个w3c标准
 后代节点
 
 xpath语法
-> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath.png)
-> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath_.png)
+> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath语法.png)
+> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath语法_.png)
 > ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath_谓语.png)
 
 
@@ -1178,7 +1178,7 @@ MVC
 * select:Select在Socket编程中还是比较重要的，可是对于初学Socket的人来说都不太爱用Select写程序，他们只是习惯写诸如connect、accept、recv或recvfrom这样的阻塞程序（所谓阻塞方式block，顾名思义，就是进程或是线程执行到这些函数时必须等待某个事件的发生，如果事件没有发生，进程或线程就被阻塞，函数不能立即返回）。
 可是使用Select就可以完成非阻塞（所谓非阻塞方式non-block，就是进程或线程执行此函数时不必非要等待事件的发生，一旦执行肯定返回，以返回值的不同来反映函数的执行情况，如果事件发生则与阻塞方式相同，若事件没有发生则返回一个代码来告知事件未发生，而进程或线程继续执行，所以效率较高）方式工作的程序，它能够监视我们需要监视的文件描述符的变化情况——读写或是异常。
 
-* epoll:epoll是Linux内核为处理大批量文件描述符而作了改进的poll，是Linux下多路复用IO接口select/poll的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率。另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了。epoll除了提供select/poll那种IO事件的水平触发（Level Triggered）外，还提供了边缘触发（Edge Triggered），这就使得用户空间程序有可能缓存IO状态，减少epoll_wait/epoll_pwait的调用，提高应用程序效率。
+* epoll:epoll是Linux内核为处理大批量文件描述符而作了改进的poll，是Linux下多路复用IO接口select/poll的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率。==另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了==。epoll除了提供select/poll那种IO事件的水平触发（Level Triggered）外，还提供了边缘触发（Edge Triggered），这就使得用户空间程序有可能缓存IO状态，减少epoll_wait/epoll_pwait的调用，提高应用程序效率。
 
 **BIO(同步阻塞)**
 阻塞式I/O模型
@@ -1186,7 +1186,7 @@ MVC
 (再python中常用monkey pack替换成非阻塞socket)
 套接字为例：
 
-> ![index_伯乐网络结构 ](https://jk-97.github.io/my_note/sources/index_阻塞IO.png)
+> ![index_阻塞IO ](https://jk-97.github.io/my_note/sources/index_阻塞IO.png)
 
 * 收到一个IO请求，首先调用recvfrom系统调用
 * 不能立即获得数据，从磁盘读取数据到内核内存(wait for data)
@@ -1196,9 +1196,15 @@ MVC
 
 在用户量有一定规模的情况下，可以使用：
 * 在服务器端使用多线程（或多进程）。多线程（或多进程）的目的是让每个连接都拥有独立的线程（或进程），这样任何一个连接的阻塞都不会影响其他的连接。
-* 开启多进程或都线程的方式，在遇到要同时响应成百上千路的连接请求，则无论多线程还是多进程都会严重占据系统资源，降低系统对外界响应效率，而且线程与进程本身也更容易进入假死状态。
+* 但是开启多进程或都线程的方式，在遇到要同时响应成百上千路的连接请求，则无论多线程还是多进程都会严重占据系统资源，==降低系统对外界响应效率，而且线程与进程本身也更容易进入假死状态。(内存抖动)==
+* ==线程池”旨在减少创建和销毁线程的频率==，其维持一定合理数量的线程，并让空闲的线程重新承担新的执行任务。“连接池”维持连接的缓存池，尽量重用已有的连接、减少创建和关闭连接的频率。这两种技术都可以很好的降低系统开销，都被广泛应用很多大型系统。
+* “线程池”和“连接池”技术也只是在一定程度上缓解了频繁调用IO接口带来的资源占用。而且，==所谓“池”始终有其上限，当请求大大超过上限时==，“池”构成的系统对外界的响应并不比没有池的时候效果好多少。所以使用“池”必须考虑其面临的响应规模，并根据响应规模调整“池”的大小。
 **NIO(同步非阻塞)**
 
+
+
+
+> ![index_阻塞IO ](https://jk-97.github.io/my_note/sources/index_非阻塞IO.png)
 
 **AIO(异步阻塞)**
 

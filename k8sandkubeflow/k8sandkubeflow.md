@@ -800,7 +800,7 @@ sudo ./cuda_10.1.105_418.39_linux.run
 ```
 nvidia-smi
 ```
-===步骤6===
+步骤6
 * 在终端输入
 ```
 sudo gedit ~/.bashrc

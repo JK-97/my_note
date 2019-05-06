@@ -476,7 +476,7 @@ $ kubectl describe nodes
 
 
 ```
-## 第二步：安装ksonet与kf
+## 第二步：安装ksonet与kfctl
 ```shell
 # 什么是ksonnet？
 # 他是一个kubernet的快速部署应用的一个工具，迁移一个应用时就会用到他，所以安装kubeflow时就会用到他，因为kubeflow其实是多个子应用组成的综合性服务

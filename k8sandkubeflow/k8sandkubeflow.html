@@ -605,9 +605,7 @@ jiangxing-pc   Ready    master   21h   v1.12.8
 
 <span class="token comment"># &#x524D;&#x9762;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x597D;&#x4E86;/etc/docker/daemon.json&#x914D;&#x7F6E;</span>
 
-
 <span class="token comment"># &#x901A;&#x8FC7;kubeadm&#x90E8;&#x7F72;&#x7684;Kubernetes cluster&#xFF0C;&#x9700;&#x8981;&#x6253;&#x5F00;kubeadm &#x7684;systemd unit&#x6587;&#x4EF6;&#xFF0C;&#x4F4D;&#x4E8E; /etc/systemd/system/kubelet.service.d/10-kubeadm.conf &#x7136;&#x540E;&#x6DFB;&#x52A0;&#x4E0B;&#x9762;&#x7684;&#x53C2;&#x6570;&#x4F5C;&#x4E3A;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span>
-
 <span class="token comment"># &#x540C;&#x6837;&#x5728;&#x6240;&#x6709;&#x8282;&#x70B9;&#x90FD;&#x9700;&#x8981;&#x914D;&#x7F6E;</span>
 $ <span class="token function">vim</span> /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 <span class="token comment"># &#x6DFB;&#x52A0;&#x4E0B;&#x9762;&#x6240;&#x793A;&#x7684;&#x884C;</span>
@@ -615,18 +613,18 @@ $ <span class="token function">vim</span> /etc/systemd/system/kubelet.service.d/
 
 
 <span class="token comment"># &#x5B8C;&#x6574;&#x6587;&#x4EF6;&#x5982;&#x4E0B;</span>
-<span class="token comment"># Note: This dropin only works with kubeadm and kubelet v1.11+</span>
-<span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
-Environment<span class="token operator">=</span><span class="token string">&quot;KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf&quot;</span>
-Environment<span class="token operator">=</span><span class="token string">&quot;KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml&quot;</span>
-Environment<span class="token operator">=</span><span class="token string">&quot;KUBELET_GPU_ARGS=--feature-gates=DevicePlugins=true&quot;</span>
-<span class="token comment"># This is a file that &quot;kubeadm init&quot; and &quot;kubeadm join&quot; generates at runtime, populating the KUBELET_KUBEADM_ARGS variable dynamically</span>
-EnvironmentFile<span class="token operator">=</span>-/var/lib/kubelet/kubeadm-flags.env
-<span class="token comment"># This is a file that the user can use for overrides of the kubelet args as a last resort. Preferably, the user should use</span>
-<span class="token comment"># the .NodeRegistration.KubeletExtraArgs object in the configuration files instead. KUBELET_EXTRA_ARGS should be sourced from this file.</span>
-EnvironmentFile<span class="token operator">=</span>-/etc/default/kubelet
-ExecStart<span class="token operator">=</span>
-ExecStart<span class="token operator">=</span>/usr/bin/kubelet <span class="token variable">$KUBELET_KUBECONFIG_ARGS</span> <span class="token variable">$KUBELET_CONFIG_ARGS</span> <span class="token variable">$KUBELET_KUBEADM_ARGS</span> <span class="token variable">$KUBELET_EXTRA_ARGS</span>
+    <span class="token comment"># Note: This dropin only works with kubeadm and kubelet v1.11+</span>
+    <span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
+    Environment<span class="token operator">=</span><span class="token string">&quot;KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf&quot;</span>
+    Environment<span class="token operator">=</span><span class="token string">&quot;KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml&quot;</span>
+    Environment<span class="token operator">=</span><span class="token string">&quot;KUBELET_GPU_ARGS=--feature-gates=DevicePlugins=true&quot;</span>
+    <span class="token comment"># This is a file that &quot;kubeadm init&quot; and &quot;kubeadm join&quot; generates at runtime, populating the KUBELET_KUBEADM_ARGS variable dynamically</span>
+    EnvironmentFile<span class="token operator">=</span>-/var/lib/kubelet/kubeadm-flags.env
+    <span class="token comment"># This is a file that the user can use for overrides of the kubelet args as a last resort. Preferably, the user should use</span>
+    <span class="token comment"># the .NodeRegistration.KubeletExtraArgs object in the configuration files instead. KUBELET_EXTRA_ARGS should be sourced from this file.</span>
+    EnvironmentFile<span class="token operator">=</span>-/etc/default/kubelet
+    ExecStart<span class="token operator">=</span>
+    ExecStart<span class="token operator">=</span>/usr/bin/kubelet <span class="token variable">$KUBELET_KUBECONFIG_ARGS</span> <span class="token variable">$KUBELET_CONFIG_ARGS</span> <span class="token variable">$KUBELET_KUBEADM_ARGS</span> <span class="token variable">$KUBELET_EXTRA_ARGS</span>
 
 
 $ <span class="token function">sudo</span> systemctl daemon-reload

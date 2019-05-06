@@ -681,7 +681,7 @@ $ kubectl port-forward svc/ambassador -n ${NAMESPACE} 8080:80
 
 
 # 四、目前待解决的问题
-* 192.168.0.115 master节点，的2张1080ti未能显示出来
+* 192.168.0.115 master节点的2张1080ti未能显示出来
 ```
 $ kubectl describe nodes
     ···
@@ -716,7 +716,7 @@ $ kubectl describe pod/first-0 -n kubeflow
     ----     ------            ----               ----               -------
     Warning  FailedScheduling  23s (x2 over 23s)  default-scheduler  persistentvolumeclaim "first" not found
 ```
-原因是因为kubeflow本生不具备虚拟化硬盘的service。需要收到了创建。但不影响正常使用。
+原因是kubeflow本生不具备虚拟化硬盘的service。需要手动创建。但不影响正常使用。
 [相关网站](https://blog.csdn.net/pushme_pli/article/details/88524393)
 # 五、使用方法
 1. 登录到网站
@@ -816,7 +816,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
 source ~/.bashrc
 nvcc --version
 ```
-===步骤7===
+步骤7
 * cuda安装好，还需要配置cudnn
 * 到官网下载cudnn，点击download，会让你先登录账号，先注册
 ![cudnn](https://jk-97.github.io/my_note/source1/cudnn1.png)

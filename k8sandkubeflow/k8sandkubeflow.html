@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>k8s+kubeflow</title>
+      <title>k8sandkubeflow</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -901,7 +901,7 @@ $ kubectl port-forward svc/ambassador -n <span class="token variable">${NAMESPAC
 </pre><h1 class="mume-header" id="%E5%9B%9B-%E7%9B%AE%E5%89%8D%E5%BE%85%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98">&#x56DB;&#x3001;&#x76EE;&#x524D;&#x5F85;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</h1>
 
 <ul>
-<li>192.168.0.115 master&#x8282;&#x70B9;&#xFF0C;&#x7684;2&#x5F20;1080ti&#x672A;&#x80FD;&#x663E;&#x793A;&#x51FA;&#x6765;</li>
+<li>192.168.0.115 master&#x8282;&#x70B9;&#x7684;2&#x5F20;1080ti&#x672A;&#x80FD;&#x663E;&#x793A;&#x51FA;&#x6765;</li>
 </ul>
 <pre data-role="codeBlock" data-info class="language-"><code>$ kubectl describe nodes
     &#xB7;&#xB7;&#xB7;
@@ -935,7 +935,7 @@ $ kubectl port-forward svc/ambassador -n <span class="token variable">${NAMESPAC
     Type     Reason            Age                From               Message
     ----     ------            ----               ----               -------
     Warning  FailedScheduling  23s (x2 over 23s)  default-scheduler  persistentvolumeclaim &quot;first&quot; not found
-</code></pre><p>&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;kubeflow&#x672C;&#x751F;&#x4E0D;&#x5177;&#x5907;&#x865A;&#x62DF;&#x5316;&#x786C;&#x76D8;&#x7684;service&#x3002;&#x9700;&#x8981;&#x6536;&#x5230;&#x4E86;&#x521B;&#x5EFA;&#x3002;&#x4F46;&#x4E0D;&#x5F71;&#x54CD;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;<br>
+</code></pre><p>&#x539F;&#x56E0;&#x662F;kubeflow&#x672C;&#x751F;&#x4E0D;&#x5177;&#x5907;&#x865A;&#x62DF;&#x5316;&#x786C;&#x76D8;&#x7684;service&#x3002;&#x9700;&#x8981;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#x3002;&#x4F46;&#x4E0D;&#x5F71;&#x54CD;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;<br>
 <a href="https://blog.csdn.net/pushme_pli/article/details/88524393">&#x76F8;&#x5173;&#x7F51;&#x7AD9;</a></p>
 <h1 class="mume-header" id="%E4%BA%94-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">&#x4E94;&#x3001;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h1>
 
@@ -1031,7 +1031,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
 </ul>
 <pre data-role="codeBlock" data-info class="language-"><code>source ~/.bashrc
 nvcc --version
-</code></pre><p>=<mark>&#x6B65;&#x9AA4;7</mark>=</p>
+</code></pre><p>&#x6B65;&#x9AA4;7</p>
 <ul>
 <li>cuda&#x5B89;&#x88C5;&#x597D;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x914D;&#x7F6E;cudnn</li>
 <li>&#x5230;&#x5B98;&#x7F51;&#x4E0B;&#x8F7D;cudnn&#xFF0C;&#x70B9;&#x51FB;download&#xFF0C;&#x4F1A;&#x8BA9;&#x4F60;&#x5148;&#x767B;&#x5F55;&#x8D26;&#x53F7;&#xFF0C;&#x5148;&#x6CE8;&#x518C;<br>

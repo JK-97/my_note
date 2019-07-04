@@ -10,12 +10,35 @@ toc:
   ordered: false
 
 ---
+
+
+
+
 # 一、前期准备
 k8s有很多种搭建方式，google上查找的大部分教程都是基于AWS和GCP的，而网上搭建本地的集群的教程极为零散。
 那么接下就开始搭建之路吧！
 示例环境
 master 192.168.0.105
 node 192.168.0.115
+## ip与dns的分配
+由于k8s在新建pod的时候，会在 /etc/network/interface 的配置文件中获取nameserver等信息，所以为了kubeflow再spwan一个新的pod时能够解析域名，就需要配置此文件。
+注意：不能再ubuntu的图形界面配置，这是ubuntu中一个槽点
+```
+# interfaces(5) file used by ifup(8) and ifdown(8)
+
+auto lo
+iface lo inet loopback
+
+auto enp0s31f6
+iface enp0s31f6 inet static
+address 10.54.0.1
+netmask 255.255.255.0
+gateway 10.54.0.253
+dns-nameservers 192.168.0.66
+
+
+```
+
 
 ## 已经适配的版本：
 * kubernets
@@ -285,6 +308,7 @@ $ kubectl get nodes
 ```
 
 ## 第二步：安装网段策略
+* canal网段策略
 ```shell
 
 
@@ -328,9 +352,22 @@ jiang-pc       Ready    <none>   21h   v1.12.8
 jiangxing-pc   Ready    master   21h   v1.12.8
 # 然后你就可以看到节点都在Ready状态
 ```
+* flannel网段策略
+```
+$ kubectl apply -f wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
+$ kubectl get pod -n kube-sytem -o wide
+
+$ kubectl get nodes
+```
 ## 第三步：解决coredns pod CrashLoopBackOff
 ```shell
+# 为什么？
+# 因为ubuntu系统会不断地刷新/etc/resolv.conf的文件，所以一直导致coredns会缺少文件，孤儿不断的地 CrashLoopBackOff
+
+# 解决办法有2种，
+
+# 1.其中一种是编辑coredns的configmap配置
 $ kubectl -n kube-system edit configmap coredns
 # 在所有的节点都要操作
 # 然后删除显示 loop 的行，并保存配置。
@@ -365,6 +402,9 @@ $ kubectl -n kube-system edit configmap coredns
     resourceVersion: "9385"
     selfLink: /api/v1/namespaces/kube-system/configmaps/coredns
     uid: eb157cfb-6f0e-11e9-92a9-0492264b2d9d
+
+
+# 2.关闭bunutu系统的network-
 ```
 
 # 三、kubeflow搭建

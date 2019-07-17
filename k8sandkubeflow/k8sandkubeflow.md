@@ -745,7 +745,7 @@ pv和pvc遵循以下生命周期：
 - 删除策略：将删除pv和外部关联的存储资源，需要插件支持。
 - 回收策略：将执行清除操作，之后可以被新的pvc使用，需要插件支持。
 
-## 安装nfs服务
+## 第一步：安装nfs服务
 ```
 # 在master中执行：
 $ sudo apt-get update && sudo apt-get install -y nfs-server
@@ -779,7 +779,7 @@ $ sudo /etc/init.d/nfs-kernel-server restart
 # 在node节点，安装nfs的client
 $ sudo apt-get update && sudo apt-get install -y nfs-common
 ```
-## 创建pv
+## 第二步：创建pv
 ```
 # 创建pv
 # 使用如下yaml
@@ -797,7 +797,7 @@ spec:
     server: {your nfs server ip}
     path: {your vol path}
 ```
-## 创建pvc
+## 第三步：创建pvc
 ```
 # 创建pvc
 # 使用如下yaml
@@ -816,14 +816,9 @@ spec:
 
 
 
-## 过程：
-* 创建pod的时候，kuebflow的pod节点会在pvc中搜索对应名字的 pvc
-* 先创建对应名字的pvc，pvc会搜索空间足够的pv
-* 如果没有，那么我们就需要创建一个pv，他们会自动的进行绑定
 
 
-
-## 结果
+## 第四步：结果
 ```
 $ kubectl get pv -n kubelfow
 NAME         CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                     STORAGECLASS   REASON   AGE
@@ -875,6 +870,14 @@ work-vol-7       Bound    work-vol-7   100Gi      RWO                           
 work-vol-8       Bound    work-vol-8   100Gi      RWO                           7d16h
 work-vol-9       Bound    work-vol-9   100Gi      RWO                           7d16h
 ```
+
+
+## 过程：
+* 创建pod的时候，kuebflow的pod节点会在pvc中搜索对应名字的 pvc
+* 先创建对应名字的pvc，pvc会搜索空间足够的pv
+* 如果没有，那么我们就需要创建一个pv，他们会自动的进行绑定
+
+
 # 五、使用方法
 1. 登录到网站
 2. 左侧栏选择notebooks

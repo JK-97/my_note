@@ -953,7 +953,7 @@ $ kubectl port-forward svc/ambassador -n <span class="token variable">${NAMESPAC
 <li>&#x5220;&#x9664;&#x7B56;&#x7565;&#xFF1A;&#x5C06;&#x5220;&#x9664;pv&#x548C;&#x5916;&#x90E8;&#x5173;&#x8054;&#x7684;&#x5B58;&#x50A8;&#x8D44;&#x6E90;&#xFF0C;&#x9700;&#x8981;&#x63D2;&#x4EF6;&#x652F;&#x6301;&#x3002;</li>
 <li>&#x56DE;&#x6536;&#x7B56;&#x7565;&#xFF1A;&#x5C06;&#x6267;&#x884C;&#x6E05;&#x9664;&#x64CD;&#x4F5C;&#xFF0C;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x88AB;&#x65B0;&#x7684;pvc&#x4F7F;&#x7528;&#xFF0C;&#x9700;&#x8981;&#x63D2;&#x4EF6;&#x652F;&#x6301;&#x3002;</li>
 </ul>
-<h2 class="mume-header" id="%E5%AE%89%E8%A3%85nfs%E6%9C%8D%E5%8A%A1">&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;</h2>
+<h2 class="mume-header" id="%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%AE%89%E8%A3%85nfs%E6%9C%8D%E5%8A%A1">&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;</h2>
 
 <pre data-role="codeBlock" data-info class="language-"><code># &#x5728;master&#x4E2D;&#x6267;&#x884C;&#xFF1A;
 $ sudo apt-get update &amp;&amp; sudo apt-get install -y nfs-server
@@ -984,7 +984,7 @@ $ sudo mkdir /nfs-data/kubeflow-pv1
 $ sudo /etc/init.d/nfs-kernel-server restart
 </code></pre><pre data-role="codeBlock" data-info class="language-"><code># &#x5728;node&#x8282;&#x70B9;&#xFF0C;&#x5B89;&#x88C5;nfs&#x7684;client
 $ sudo apt-get update &amp;&amp; sudo apt-get install -y nfs-common
-</code></pre><h2 class="mume-header" id="%E5%88%9B%E5%BB%BApv">&#x521B;&#x5EFA;pv</h2>
+</code></pre><h2 class="mume-header" id="%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%88%9B%E5%BB%BApv">&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x521B;&#x5EFA;pv</h2>
 
 <pre data-role="codeBlock" data-info class="language-"><code># &#x521B;&#x5EFA;pv
 # &#x4F7F;&#x7528;&#x5982;&#x4E0B;yaml
@@ -1001,7 +1001,7 @@ spec:
   nfs:
     server: {your nfs server ip}
     path: {your vol path}
-</code></pre><h2 class="mume-header" id="%E5%88%9B%E5%BB%BApvc">&#x521B;&#x5EFA;pvc</h2>
+</code></pre><h2 class="mume-header" id="%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%88%9B%E5%BB%BApvc">&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x521B;&#x5EFA;pvc</h2>
 
 <pre data-role="codeBlock" data-info class="language-"><code># &#x521B;&#x5EFA;pvc
 # &#x4F7F;&#x7528;&#x5982;&#x4E0B;yaml
@@ -1016,14 +1016,7 @@ spec:
       resources:
         requests:
           storage: {yourstorge}(5GI)
-</code></pre><h2 class="mume-header" id="%E8%BF%87%E7%A8%8B">&#x8FC7;&#x7A0B;&#xFF1A;</h2>
-
-<ul>
-<li>&#x521B;&#x5EFA;pod&#x7684;&#x65F6;&#x5019;&#xFF0C;kuebflow&#x7684;pod&#x8282;&#x70B9;&#x4F1A;&#x5728;pvc&#x4E2D;&#x641C;&#x7D22;&#x5BF9;&#x5E94;&#x540D;&#x5B57;&#x7684; pvc</li>
-<li>&#x5148;&#x521B;&#x5EFA;&#x5BF9;&#x5E94;&#x540D;&#x5B57;&#x7684;pvc&#xFF0C;pvc&#x4F1A;&#x641C;&#x7D22;&#x7A7A;&#x95F4;&#x8DB3;&#x591F;&#x7684;pv</li>
-<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;pv&#xFF0C;&#x4ED6;&#x4EEC;&#x4F1A;&#x81EA;&#x52A8;&#x7684;&#x8FDB;&#x884C;&#x7ED1;&#x5B9A;</li>
-</ul>
-<h2 class="mume-header" id="%E7%BB%93%E6%9E%9C">&#x7ED3;&#x679C;</h2>
+</code></pre><h2 class="mume-header" id="%E7%AC%AC%E5%9B%9B%E6%AD%A5%E7%BB%93%E6%9E%9C">&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x7ED3;&#x679C;</h2>
 
 <pre data-role="codeBlock" data-info class="language-"><code>$ kubectl get pv -n kubelfow
 NAME         CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                     STORAGECLASS   REASON   AGE
@@ -1074,7 +1067,14 @@ work-vol-6       Bound    work-vol-6   100Gi      RWO                           
 work-vol-7       Bound    work-vol-7   100Gi      RWO                           7d16h
 work-vol-8       Bound    work-vol-8   100Gi      RWO                           7d16h
 work-vol-9       Bound    work-vol-9   100Gi      RWO                           7d16h
-</code></pre><h1 class="mume-header" id="%E4%BA%94-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">&#x4E94;&#x3001;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h1>
+</code></pre><h2 class="mume-header" id="%E8%BF%87%E7%A8%8B">&#x8FC7;&#x7A0B;&#xFF1A;</h2>
+
+<ul>
+<li>&#x521B;&#x5EFA;pod&#x7684;&#x65F6;&#x5019;&#xFF0C;kuebflow&#x7684;pod&#x8282;&#x70B9;&#x4F1A;&#x5728;pvc&#x4E2D;&#x641C;&#x7D22;&#x5BF9;&#x5E94;&#x540D;&#x5B57;&#x7684; pvc</li>
+<li>&#x5148;&#x521B;&#x5EFA;&#x5BF9;&#x5E94;&#x540D;&#x5B57;&#x7684;pvc&#xFF0C;pvc&#x4F1A;&#x641C;&#x7D22;&#x7A7A;&#x95F4;&#x8DB3;&#x591F;&#x7684;pv</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;pv&#xFF0C;&#x4ED6;&#x4EEC;&#x4F1A;&#x81EA;&#x52A8;&#x7684;&#x8FDB;&#x884C;&#x7ED1;&#x5B9A;</li>
+</ul>
+<h1 class="mume-header" id="%E4%BA%94-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">&#x4E94;&#x3001;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h1>
 
 <ol>
 <li>&#x767B;&#x5F55;&#x5230;&#x7F51;&#x7AD9;</li>
@@ -1229,11 +1229,11 @@ sudo make
 <li><a href="#%E5%9B%9B-%E6%8C%81%E4%B9%85%E5%8C%96">&#x56DB;&#x3001;&#x6301;&#x4E45;&#x5316;</a>
 <ul>
 <li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">&#x751F;&#x547D;&#x5468;&#x671F;</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85nfs%E6%9C%8D%E5%8A%A1">&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;</a></li>
-<li><a href="#%E5%88%9B%E5%BB%BApv">&#x521B;&#x5EFA;pv</a></li>
-<li><a href="#%E5%88%9B%E5%BB%BApvc">&#x521B;&#x5EFA;pvc</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%AE%89%E8%A3%85nfs%E6%9C%8D%E5%8A%A1">&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%88%9B%E5%BB%BApv">&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x521B;&#x5EFA;pv</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%88%9B%E5%BB%BApvc">&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x521B;&#x5EFA;pvc</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E7%BB%93%E6%9E%9C">&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x7ED3;&#x679C;</a></li>
 <li><a href="#%E8%BF%87%E7%A8%8B">&#x8FC7;&#x7A0B;&#xFF1A;</a></li>
-<li><a href="#%E7%BB%93%E6%9E%9C">&#x7ED3;&#x679C;</a></li>
 </ul>
 </li>
 <li><a href="#%E4%BA%94-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">&#x4E94;&#x3001;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</a></li>

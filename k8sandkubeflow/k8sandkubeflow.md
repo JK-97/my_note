@@ -42,45 +42,52 @@ dns-nameservers 192.168.0.66
 
 ## 已经适配的版本：
 * kubernets
-> kubeadm kubelet kubectl 全部要统一版本v1.12.8
+kubeadm kubelet kubectl 全部要统一版本v1.13.6
+```
+docker ：
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        e68fc7a
+ Built:             Tue Aug 21 17:24:56 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
 
-* docker ：
-> Client:
->  Version:	17.12.1-ce
->  API version:	1.35
->  Go version:	go1.9.4
->  Git commit:	7390fc6
->  Built:	Tue Feb 27 22:17:40 2018
->  OS/Arch:	linux/amd64
-> 
-> Server:
->  Engine:
->   Version:	17.12.1-ce
->   API version:	1.35 (minimum version 1.12)
->   Go version:	go1.9.4
->   Git commit:	7390fc6
->   Built:	Tue Feb 27 22:16:13 2018
->   OS/Arch:	linux/amd64
->   Experimental:	false
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       e68fc7a
+  Built:            Tue Aug 21 17:23:21 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+```
 * nvidia-docker
-> NVIDIA Docker: 2.0.3
-> Client:
->  Version:	17.12.1-ce
->  API version:	1.35
->  Go version:	go1.9.4
->  Git commit:	7390fc6
->  Built:	Tue Feb 27 22:17:40 2018
->  OS/Arch:	linux/amd64
-> 
-> Server:
->  Engine:
->   Version:	17.12.1-ce
->   API version:	1.35 (minimum version 1.12)
->   Go version:	go1.9.4
->   Git commit:	7390fc6
->   Built:	Tue Feb 27 22:16:13 2018
->   OS/Arch:	linux/amd64
->   Experimental:	false
+```
+NVIDIA Docker: 2.0.3
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        e68fc7a
+ Built:             Tue Aug 21 17:24:56 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       e68fc7a
+  Built:            Tue Aug 21 17:23:21 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+
+
+```
 
 相关命令
 ```shell
@@ -301,8 +308,8 @@ $ kubeadm join 192.168.0.105:6443 --token aoanr5.geidnr74gvp5xrlc --discovery-to
 
 $ kubectl get nodes
     NAME           STATUS   ROLES    AGE   VERSION
-    jiang-pc       NoReady    <none>   21h   v1.12.8
-    jiangxing-pc   NoReady    master   21h   v1.12.8
+    jiang-pc       NoReady    <none>   21h   v1.13.6
+    jiangxing-pc   NoReady    master   21h   v1.13.6
 # 就可以在master上看到所有的node机子了，但是还是noready状态。  
 # 因为他们还不具备网段通讯的基础，所以需要安装网段策略。晚上
 ```
@@ -404,7 +411,8 @@ $ kubectl -n kube-system edit configmap coredns
     uid: eb157cfb-6f0e-11e9-92a9-0492264b2d9d
 
 
-# 2.关闭bunutu系统的network-
+# 2.关闭bunutu系统的network-manager
+$ sudo stop network-manager
 ```
 
 # 三、kubeflow搭建
@@ -717,45 +725,156 @@ $ kubectl port-forward svc/ambassador -n ${NAMESPACE} 8080:80
 # 就可以访问了http://localhost:8080/
 ```
 
+# 四、持久化
+配置kubelfow，我们会将dockers中得出来的结果，与代码需要保存到本地，以防机子意外关机导致数据全部丢失
+由于挂在的持久卷是基于nfs服务的，所以我们需要在集群中先安装nfs服务。
 
-# 四、目前待解决的问题
-* 192.168.0.115 master节点的2张1080ti未能显示出来
+
+### 生命周期
+pv和pvc遵循以下生命周期：
+
+供应准备。通过集群外的存储系统或者云平台来提供存储持久化支持。
+- 静态提供：管理员手动创建多个PV，供PVC使用。
+- 动态提供：动态创建PVC特定的PV，并绑定。
+绑定。用户创建pvc并指定需要的资源和访问模式。在找到可用pv之前，pvc会保持未绑定状态。
+使用。用户可在pod中像volume一样使用pvc。
+释放。用户删除pvc来回收存储资源，pv将变成“released”状态。由于还保留着之前的数据，这些数据需要根据不同的策略来处理，否则这些存储资源无法被其他pvc使用。
+
+回收(Reclaiming)。pv可以设置三种回收策略：保留（Retain），回收（Recycle）和删除（Delete）。
+- 保留策略：允许人工处理保留的数据。
+- 删除策略：将删除pv和外部关联的存储资源，需要插件支持。
+- 回收策略：将执行清除操作，之后可以被新的pvc使用，需要插件支持。
+
+## 安装nfs服务
 ```
-$ kubectl describe nodes
-    ···
-    Addresses:
-    InternalIP:  192.168.0.105
-    Hostname:    jiangxing-pc
-    Capacity:
-    cpu:                16
-    ephemeral-storage:  245016792Ki
-    hugepages-1Gi:      0
-    hugepages-2Mi:      0
-    memory:             32611112Ki
-    nvidia.com/gpu:     0
-    pods:               110
-    Allocatable:
-    cpu:                16
-    ephemeral-storage:  225807475134
-    hugepages-1Gi:      0
-    hugepages-2Mi:      0
-    memory:             32508712Ki
-    nvidia.com/gpu:     0
-    pods:               110
-    ···
+# 在master中执行：
+$ sudo apt-get update && sudo apt-get install -y nfs-server
+$ sudo mkdir /nfs-data/kubeflow-pv1
+# 修改/etc/exports文件，设置vol的权限
+    /nfs-data/kubeflow-pv1 *(rw,sync,no_root_squash,no_subtree_check)
+
+    /mnt/sda/work-vol-1 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sda/work-vol-2 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sda/work-vol-3 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sda/data-vol-1 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sda/data-vol-2 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sda/data-vol-3 *(rw,sync,no_root_squash,no_subtree_check
+    /mnt/sdb/work-vol-4 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdb/work-vol-5 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdb/work-vol-6 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdb/data-vol-4 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdb/data-vol-5 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdb/data-vol-6 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdc/work-vol-7 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdc/work-vol-8 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdc/work-vol-9 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdc/data-vol-7 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdc/data-vol-8 *(rw,sync,no_root_squash,no_subtree_check)
+    /mnt/sdc/data-vol-9 *(rw,sync,no_root_squash,no_subtree_check)
+
+# 重启服务读入配置
+$ sudo /etc/init.d/nfs-kernel-server restart
 ```
-原因尚且不明确
-* 创建Notebook Servers时不能创建 Volume
 ```
-$ kubectl describe pod/first-0 -n kubeflow
-    ···
-    Events:
-    Type     Reason            Age                From               Message
-    ----     ------            ----               ----               -------
-    Warning  FailedScheduling  23s (x2 over 23s)  default-scheduler  persistentvolumeclaim "first" not found
+# 在node节点，安装nfs的client
+$ sudo apt-get update && sudo apt-get install -y nfs-common
 ```
-原因是kubeflow本生不具备虚拟化硬盘的service。需要手动创建。但不影响正常使用。
-[相关网站](https://blog.csdn.net/pushme_pli/article/details/88524393)
+## 创建pv
+```
+# 创建pv
+# 使用如下yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {yourname}
+  namespace: {yournamespaces}(kubeflow)
+spec:
+  capacity:
+    storage: {yourstorge}(20GI)
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: {your nfs server ip}
+    path: {your vol path}
+```
+## 创建pvc
+```
+# 创建pvc
+# 使用如下yaml
+    kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: {yourname}
+      namespace: {yournamesapaces}(kuebflow)
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {yourstorge}(5GI)
+```
+
+
+
+## 过程：
+* 创建pod的时候，kuebflow的pod节点会在pvc中搜索对应名字的 pvc
+* 先创建对应名字的pvc，pvc会搜索空间足够的pv
+* 如果没有，那么我们就需要创建一个pv，他们会自动的进行绑定
+
+
+
+## 结果
+```
+$ kubectl get pv -n kubelfow
+NAME         CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                     STORAGECLASS   REASON   AGE
+data-vol-1   450Gi      RWO            Retain           Bound    kubeflow/data-vol-1                               7d16h
+data-vol-2   450Gi      RWO            Retain           Bound    kubeflow/data-vol-2                               7d16h
+data-vol-3   450Gi      RWO            Retain           Bound    kubeflow/data-vol-3                               7d16h
+data-vol-4   450Gi      RWO            Retain           Bound    kubeflow/data-vol-4                               7d16h
+data-vol-5   450Gi      RWO            Retain           Bound    kubeflow/data-vol-5                               7d16h
+data-vol-6   450Gi      RWO            Retain           Bound    kubeflow/data-vol-6                               7d16h
+data-vol-7   450Gi      RWO            Retain           Bound    kubeflow/data-vol-7                               7d16h
+data-vol-8   450Gi      RWO            Retain           Bound    kubeflow/data-vol-8                               7d16h
+data-vol-9   450Gi      RWO            Retain           Bound    kubeflow/data-vol-9                               7d16h
+pv1          20Gi       RWO            Retain           Bound    kubeflow/minio-pvc                                11d
+pv2          20Gi       RWO            Retain           Bound    kubeflow/katib-mysql                              11d
+vizier-pv    20Gi       RWO            Retain           Bound    kubeflow/mysql-pv-claim                           11d
+work-vol-1   100Gi      RWO            Retain           Bound    kubeflow/work-vol-1                               7d16h
+work-vol-2   100Gi      RWO            Retain           Bound    kubeflow/work-vol-2                               7d16h
+work-vol-3   100Gi      RWO            Retain           Bound    kubeflow/work-vol-3                               7d16h
+work-vol-4   100Gi      RWO            Retain           Bound    kubeflow/work-vol-4                               7d16h
+work-vol-5   100Gi      RWO            Retain           Bound    kubeflow/work-vol-5                               7d16h
+work-vol-6   100Gi      RWO            Retain           Bound    kubeflow/work-vol-6                               7d16h
+work-vol-7   100Gi      RWO            Retain           Bound    kubeflow/work-vol-7                               7d16h
+work-vol-8   100Gi      RWO            Retain           Bound    kubeflow/work-vol-8                               7d16h
+work-vol-9   100Gi      RWO            Retain           Bound    kubeflow/work-vol-9                               7d16h
+
+
+
+$ kubectl get pvc -n kubeflow
+NAME             STATUS   VOLUME       CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+data-vol-1       Bound    data-vol-1   450Gi      RWO                           7d16h
+data-vol-2       Bound    data-vol-2   450Gi      RWO                           7d16h
+data-vol-3       Bound    data-vol-3   450Gi      RWO                           7d16h
+data-vol-4       Bound    data-vol-4   450Gi      RWO                           7d16h
+data-vol-5       Bound    data-vol-5   450Gi      RWO                           7d16h
+data-vol-6       Bound    data-vol-6   450Gi      RWO                           7d16h
+data-vol-7       Bound    data-vol-7   450Gi      RWO                           7d16h
+data-vol-8       Bound    data-vol-8   450Gi      RWO                           7d16h
+data-vol-9       Bound    data-vol-9   450Gi      RWO                           7d16h
+katib-mysql      Bound    pv2          20Gi       RWO                           11d
+minio-pvc        Bound    pv1          20Gi       RWO                           32d
+mysql-pv-claim   Bound    vizier-pv    20Gi       RWO                           32d
+work-vol-1       Bound    work-vol-1   100Gi      RWO                           7d16h
+work-vol-2       Bound    work-vol-2   100Gi      RWO                           7d16h
+work-vol-3       Bound    work-vol-3   100Gi      RWO                           7d16h
+work-vol-4       Bound    work-vol-4   100Gi      RWO                           7d16h
+work-vol-5       Bound    work-vol-5   100Gi      RWO                           7d16h
+work-vol-6       Bound    work-vol-6   100Gi      RWO                           7d16h
+work-vol-7       Bound    work-vol-7   100Gi      RWO                           7d16h
+work-vol-8       Bound    work-vol-8   100Gi      RWO                           7d16h
+work-vol-9       Bound    work-vol-9   100Gi      RWO                           7d16h
+```
 # 五、使用方法
 1. 登录到网站
 2. 左侧栏选择notebooks

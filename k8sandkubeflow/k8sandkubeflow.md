@@ -881,7 +881,7 @@ work-vol-9       Bound    work-vol-9   100Gi      RWO                           
 # 五、使用方法
 1. 登录到网站
 2. 左侧栏选择notebooks
-![notebook界面](https://jk-97.github.io/my_note/source1/notebook_view.png)
+![notebook界面](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/notebook_view.png)
 3. 点击newserver
 4. 创建名字，选镜像
 5. 配置CPU与MEM
@@ -902,7 +902,7 @@ tips：在选择是否安装第三方驱动和更新时，不选择，直接跳�
 步骤2：
   * 进入系统，打开浏览器先下载cuda，选择.run格式的驱动(cuda_10.1.105_418.39_linux.run)，将文件复制到home目录下         
 tips：由于cuda里自带了驱动，所以我们可以跳过安装驱动的步骤
-![nvida_web](https://jk-97.github.io/my_note/source1/nvida_web.png)
+![nvida_web](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/nvida_web.png)
 
 步骤3：
   * 打开终端(vim没安装的 需要先安装)
@@ -950,8 +950,8 @@ sudo chmod 777  *.run
 sudo ./cuda_10.1.105_418.39_linux.run
 
 ```
-![cuda1](https://jk-97.github.io/my_note/source1/cuda1.jpg)
-![cuda2](https://jk-97.github.io/my_note/source1/cuda2.jpg)
+![cuda1](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/cuda1.jpg)
+![cuda2](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/cuda2.jpg)
 步骤5
 * 等待30s左右出现选择界面
 * 只需全部选择即可
@@ -979,11 +979,11 @@ nvcc --version
 步骤7
 * cuda安装好，还需要配置cudnn
 * 到官网下载cudnn，点击download，会让你先登录账号，先注册
-![cudnn](https://jk-97.github.io/my_note/source1/cudnn1.png)
+![cudnn](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/cudnn1.png)
 * 注册勾选同意协议会出现如下界面
-![cudnn](https://jk-97.github.io/my_note/source1/cudnn2.png)
+![cudnn](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/cudnn2.png)
 * 选择对应cuda版本的cudnn，本教程使用的时cuda10.1，所以选择第一个，在选择cuDNN Library for Linux
-![cudnn](https://jk-97.github.io/my_note/source1/cudnn3.png)
+![cudnn](https://jk-97.github.io/my_note/k8sandkubeflow/sources/images/cudnn3.png)
 * 解压到当前目录，会有cuda这个文件夹
 * 在终端执行以下命令
 tips:若安装不一样的版本，请更改好对应的路径名

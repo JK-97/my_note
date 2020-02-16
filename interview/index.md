@@ -11,11 +11,6 @@ toc:
 
 ---
 # 欢迎来到我的笔记
-
-笔记尚待完善，陆续会有项目专题。
-[深度学习](https://jk-97.github.io/my_note/deeplearning.html)
-[我的仓库](https://github.com/JK-97)
-
 ---
 # 1.python语言
 
@@ -170,7 +165,7 @@ test_merge_sort()
 
 ```
 > 由于一次面试没答出来，回来恶补了一下
-> ![排序算法复杂度](https://jk-97.github.io/my_note/sources/index_排序复杂度.jpg)
+> ![排序算法复杂度](https://jk-97.github.io/my_note/interview/sources/images/index_排序复杂度.jpg)
 
 ---
 ## 2.2.数据结构
@@ -388,16 +383,16 @@ type('ChildWithMethod',(Base,),{'bar':Ture,'hello':hello})
 
 ## 4.1.基本概念
 **协议表**
-> ![index_协议表 ](https://jk-97.github.io/my_note/sources/index_协议表.png)
+> ![index_协议表 ](https://jk-97.github.io/my_note/interview/sources/images/index_协议表.png)
 
 **浏览器输入一个url中间经历的过程**
-> ![index_url历程](https://jk-97.github.io/my_note/sources/index_url历程.png)
+> ![index_url历程](https://jk-97.github.io/my_note/interview/sources/images/index_url历程.png)
 
 **TCP三次握手**
-> ![index_三次握手](https://jk-97.github.io/my_note/sources/index_三次握手.png)
+> ![index_三次握手](https://jk-97.github.io/my_note/interview/sources/images/index_三次握手.png)
 
 **TCP四次挥手**
-> ![index_四次挥手 ](https://jk-97.github.io/my_note/sources/index_四次挥手.png)
+> ![index_四次挥手 ](https://jk-97.github.io/my_note/interview/sources/images/index_四次挥手.png)
 
 [reference：https://www.cnblogs.com/huangjianping/p/7998067.html==](https://www.cnblogs.com/huangjianping/p/7998067.html)
 
@@ -519,14 +514,14 @@ column0 | column1 | column2
 * 程序的逻辑地址划分为固定大小的页(Page)
 * 物理地址划分为同样大小的帧(Frame)
 * 通过页表对应逻辑地址和物理地址
-> ![分页](https://jk-97.github.io/my_note/sources/index_分页机制.png)
+> ![分页](https://jk-97.github.io/my_note/interview/sources/images/index_分页机制.png)
 
 **什么是分段机制**
 分段式为了满足代码的一些逻辑需求
 * 数据共享，数据保护，动态链接库等
 * 通过段表实现逻辑地址和物理地址的映射关系
 * 每个段类不式连续内存分配，段和段直接式离散分配的(每个段是出于实现相同的一个功能来进行分配)
-> ![分段](https://jk-97.github.io/my_note/sources/index_分段机制.png)
+> ![分段](https://jk-97.github.io/my_note/interview/sources/images/index_分段机制.png)
 
 **分页和分段的区别**
 * 页是出于内存利用率的角度提出离散分配机制
@@ -566,7 +561,7 @@ b.append(a) #a ref 2
 del a       #a ref 1
 del b       #b ref 1    无法归零回收
 ```
-> ![标记清楚](https://jk-97.github.io/my_note/sources/index_分代回收.png)
+> ![标记清楚](https://jk-97.github.io/my_note/interview/sources/images/index_分代回收.png)
 > 通过root节点搜索可以达到的节点，不可达到的点标为灰色，回收
 
 ***分代回收***
@@ -616,7 +611,7 @@ del b       #b ref 1    无法归零回收
 
 ## 6.1.数据库种类
 **如图:**
-> ![index_数据库分类 ](https://jk-97.github.io/my_note/sources/index_数据库分类.png)
+> ![index_数据库分类 ](https://jk-97.github.io/my_note/interview/sources/images/index_数据库分类.png)
 > 
 **关系型数据库介绍**
  
@@ -630,7 +625,7 @@ del b       #b ref 1    无法归零回收
     &emsp;&emsp;关系型数据库诞生40多年了，从理论产生发展到现实产品，例如：Oracle和MySQL，Oracle在数据库领域上升到霸主地位，形成每年高达数百亿美元的庞大产业市场。
 
 3. **关系型数据库表格之间的关系举例**
-![index_关系表 ](https://jk-97.github.io/my_note/sources/index_关系表.png)
+![index_关系表 ](https://jk-97.github.io/my_note/interview/sources/images/index_关系表.png)
  
 
 **非关系型数据库介绍**
@@ -848,7 +843,7 @@ del b       #b ref 1    无法归零回收
     * 减少响应时间：内存IO速度必磁盘快
     * 提升吞吐量：Redis等内存数据库单机可以支撑很大并发
 
-> ![index_redis与memcached](https://jk-97.github.io/my_note/sources/index_redis与memcached.png)
+> ![index_redis与memcached](https://jk-97.github.io/my_note/interview/sources/images/index_redis与memcached.png)
 
 * Redis的常用数据类型，使用方式
     * Sring:用来实现简单的KV键值对，比如计数器
@@ -983,9 +978,9 @@ mmm
 
 
 ### 7.1.3.深度优先与广度邮箱
-> ![index_伯乐网络结构 ](https://jk-97.github.io/my_note/sources/index_伯乐网络结构.png)
+> ![index_伯乐网络结构 ](https://jk-97.github.io/my_note/interview/sources/images/index_伯乐网络结构.png)
 我们可以观看网站的结构非常地与数据结构的树相似
-> ![index_二叉树 ](https://jk-97.github.io/my_note/sources/index_二叉树.png)
+> ![index_二叉树 ](https://jk-97.github.io/my_note/interview/sources/images/index_二叉树.png)
 * 深度优先
 ```python
 # ABDEICFGH(递归实现)
@@ -1053,9 +1048,9 @@ xpath时一个w3c标准
 后代节点
 
 xpath语法
-> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath语法.png)
-> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath语法_.png)
-> ![xpath ](https://jk-97.github.io/my_note/sources/index_xpath_谓语.png)
+> ![xpath ](https://jk-97.github.io/my_note/interview/sources/images/index_xpath语法.png)
+> ![xpath ](https://jk-97.github.io/my_note/interview/sources/images/index_xpath语法_.png)
+> ![xpath ](https://jk-97.github.io/my_note/interview/sources/images/index_xpath_谓语.png)
 
 
 
@@ -1183,7 +1178,7 @@ MVC
 **BIO(同步阻塞)**
 阻塞式I/O模型是最基本的I/O模型。在默认情况下，所有套接字都是阻塞的，以数据报(在python中常用monkey pack替换成非阻塞socket)
 
-> ![index_阻塞IO ](https://jk-97.github.io/my_note/sources/index_阻塞IO.png)
+> ![index_阻塞IO ](https://jk-97.github.io/my_note/interview/sources/images/index_阻塞IO.png)
 
 1. 收到一个IO请求，首先调用recvfrom系统调用
 2. 不能立即获得数据，从磁盘读取数据到内核内存(wait for data)
@@ -1200,7 +1195,7 @@ MVC
 
 **NIO(同步非阻塞)**
 
-> ![index_非阻塞IO ](https://jk-97.github.io/my_note/sources/index_非阻塞IO.png)
+> ![index_非阻塞IO ](https://jk-97.github.io/my_note/interview/sources/images/index_非阻塞IO.png)
 
 
 1. 收到一个IO请求，首先调用recvfrom系统调用
@@ -1222,7 +1217,7 @@ MVC
 
 **多路复用**
 IO multiplexing这个词可能有点陌生，但是如果我说select/epoll，大概就都能明白了。有些地方也称这种IO方式为事件驱动IO(event driven IO)。我们都知道，select/epoll的好处就在于单个process就可以同时处理多个网络连接的IO。它的基本原理就是select/epoll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程。它的流程如图：
-> ![index_多路复用IO ](https://jk-97.github.io/my_note/sources/index_多路复用IO.png)
+> ![index_多路复用IO ](https://jk-97.github.io/my_note/interview/sources/images/index_多路复用IO.png)
 
 当用户进程调用了select，那么整个进程会被block，而同时，kernel会“监视”所有select负责的socket，当任何一个socket中的数据准备好了，select就会返回。这个时候用户进程再调用read操作，将数据从kernel拷贝到用户进程。
 这个图和blocking IO的图其实并没有太大的不同，事实上还更差一些。因为这里需要使用两个系统调用(select和recvfrom)，而blocking IO只调用了一个系统调用(recvfrom)。但是，用select的优势在于它可以同时处理多个connection。
@@ -1244,7 +1239,7 @@ IO multiplexing这个词可能有点陌生，但是如果我说select/epoll，�
 **AIO(异步非阻塞)**
 
 
-> ![index_异步IO ](https://jk-97.github.io/my_note/sources/index_异步IO.png)
+> ![index_异步IO ](https://jk-97.github.io/my_note/interview/sources/images/index_异步IO.png)
 用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。然后，kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了。
 
 **通俗的例子**
